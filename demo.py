@@ -9,3 +9,4 @@ select_heroes = """
 heroes = execute_query(select_heroes).fetchall()
 for hero in heroes:
     print(hero[1])
+
