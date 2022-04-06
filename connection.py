@@ -27,3 +27,5 @@ def execute_query(query):
         return cursor
     except Error as e:
         print(f"The error '{e}' occurred")
+
+
