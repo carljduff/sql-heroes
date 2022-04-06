@@ -14,7 +14,7 @@ INSERT INTO
 VALUES
     (
         'Chill Woman',
-        E'The coolest woman you/'ll ever meet.',
+        E'The coolest woman you\'ll ever meet.',
         'In a freak industrial accident, Chill Woman was dunked in toxic waste. After an agonizing transformation, she developed the ability to exhale sub-zero mist that freezes everything it touches.'
     );
 
