@@ -24,3 +24,12 @@ from connection import *
 # '''
 
 # update(update_relationship_1)
+
+# add_superpower = """
+# INSERT INTO ability_types(id, name)
+# VALUES (default, 'Shapeshifting')
+# """
+
+# update(add_superpower)
+
+#UPDATE HERO ABILITIES WITH NEW SHAPESHIFTING ABILITY
