@@ -33,3 +33,22 @@ from connection import *
 # update(add_superpower)
 
 #UPDATE HERO ABILITIES WITH NEW SHAPESHIFTING ABILITY
+
+def alter_relationships():
+    execute_query(
+        """
+        ALTER TABLE relationships
+        ADD COLUMN 
+        """
+    )
+
+def change_hero_name(new_name, original_name):
+    change_name = """
+    UPDATE heroes
+    SET name = %s
+    WHERE name = %s;
+    """
+    change = execute_query(change_name, (new_name, original_name))
+    pprint(original_name + " was changed to " + new_name + "!")
+
+change_hero_name('NEWBIE2', 'Jordan')
