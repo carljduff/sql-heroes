@@ -30,9 +30,14 @@ def delete_vehicle(name):
     delete = execute_query(delete_vehicle, (name,)) 
     pprint(name + ' was deleted!')
 
-delete_vehicle('Duff')
+# delete_vehicle('Duff')
 
 
+delete_relationship =   """
+    DELETE FROM relationships
+    WHERE 
+    heroes.name = %s;
+    """
 
 
 
