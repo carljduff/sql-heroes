@@ -16,7 +16,7 @@ def delete_a_hero(name):
     WHERE 
     heroes.name = %s;
     """
-    delete = execute_query(delete_hero, [name]) 
+    delete = execute_query(delete_hero, (name,)) 
     pprint(name + ' was deleted!')
 
 # delete_a_hero('')
@@ -27,10 +27,10 @@ def delete_vehicle(name):
     WHERE 
     name = %s;
     """
-    delete = execute_query(delete_vehicle, [name]) # Ask about this <----------- [] --------- >
+    delete = execute_query(delete_vehicle, (name,)) 
     pprint(name + ' was deleted!')
 
-# delete_vehicle('Dufftank')
+delete_vehicle('Duff')
 
 
 

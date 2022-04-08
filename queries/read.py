@@ -16,6 +16,16 @@ def hero_names():
 
 # hero_names()
 
+def hero_info(name):
+    print_me = execute_query(
+        """
+        SELECT *
+        FROM heroes
+        WHERE name = %s
+        """
+    ).fetchone()
+    pprint(print_me)
+
 ## try to update with actual friend names **********************************
 def friends():
     print_me = execute_query(

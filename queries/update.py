@@ -9,7 +9,7 @@ def add_superpower(name):
     INSERT INTO ability_types(name)
     VALUES (%s)
     """
-    add = execute_query(add_superpower, [name])
+    add = execute_query(add_superpower, (name,))
     pprint(name + ' is a new cool superpower!')
 
 # add_superpower('Shapeshifting')
@@ -46,7 +46,7 @@ def friends(id):
     SET relationship_type_id = 1
     WHERE id = %s
     """
-    update = execute_query(update_friendship, [id])
+    update = execute_query(update_friendship, (id,))
     pprint('You are now friends! Hug!')
 
 # friends(1)
@@ -57,7 +57,7 @@ def foes(id):
     SET relationship_type_id = 2
     WHERE id = %s
     """
-    update = execute_query(update_foeship, [id])
+    update = execute_query(update_foeship, (id,))
     pprint('You are now foes! Attack!')
 
 # foes(1)
