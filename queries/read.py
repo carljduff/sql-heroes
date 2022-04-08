@@ -39,6 +39,7 @@ def hero_info(name):
 
 # friends()
 
+
 friends_list = """
     SELECT h1.name, h2.name
     FROM relationships

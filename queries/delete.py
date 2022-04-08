@@ -36,8 +36,9 @@ def delete_vehicle(name):
 delete_relationship =   """
     DELETE FROM relationships
     WHERE 
-    heroes.name = %s;
+    id = 2;
     """
+execute_query(delete_relationship)
 
 
 

@@ -39,6 +39,16 @@ def update_hero_name(new_name, original_name):
     update = execute_query(update_name, (new_name, original_name))
     pprint(original_name + " was changed to " + new_name + "!")
 
+friends_list = """
+    SELECT h1.name, h2.name
+    FROM relationships
+    INNER JOIN heroes h1
+    ON relationships.hero1_id = h1.id
+    INNER JOIN heroes h2
+    ON relationships.hero2_id = h2.id
+    WHERE relationship_type_id = 1
+    """
+
 def delete_a_hero(name):
     delete_hero = """
     DELETE FROM heroes
@@ -55,7 +65,11 @@ def demo():
         '2: View hero information \n'
         '3: See logged in heroes \n'
         '4: Change a hero name \n'
-        '5: Delete a hero \n')
+        '5: View Friends List \n'
+        '6: Delete a hero \n')
+    if prompt != '1' or '2' or '3' or '4' or '5' or '6':
+        pprint('Please enter a valid choice.')
+        demo()
     if prompt == '1':
         name = input('Enter your hero name. ')
         about_me = input('Tell us about yourself. ')
@@ -75,15 +89,22 @@ def demo():
         update_hero_name(new_name, original_name)
         demo()
     elif prompt == '5':
+        pprint(execute_query(friends_list).fetchall())
+        demo()
+    elif prompt == '6':
         name = input('Who are you? ')
-        choice = input('*** You are deleting your account. Are you sure? (y or n) *** ')
-        if choice == 'y':
-            delete_a_hero(name)
-            pprint(name + ' has been deleted. Goodbye.')
+        if name == input():
+            pprint('Please try again with a valid name.')
             demo()
-        elif choice == 'n':
-            pprint('Thanks for staying!')
-            demo()
+        else:
+            choice = input('*** You are deleting your account. Are you sure? (y or n) *** ')
+            if choice == 'y':
+                delete_a_hero(name)
+                pprint(name + ' has been deleted. Goodbye.')
+                demo()
+            elif choice == 'n':
+                pprint('Thanks for staying!')
+                demo()
 
 demo()
 
