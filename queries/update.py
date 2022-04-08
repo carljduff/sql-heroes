@@ -2,13 +2,7 @@ import sys
 sys.path.append("/workspace/sql-heroes")
 from connection import *
 
-# add_vehicle = """ 
-#     INSERT INTO super_vehicles(id, name, description, hero_id) 
-#     VALUES (default, 'Blackbird', 'The Blackbird has an on-board Cerebro, used to find mutants, as well as an enhanced cloaking device that literally makes the Blackbird invisible. This cloak is perhaps one of the most recognizable traits of the Blackbird. While each Blackbird is a little different, they have been seen going deep underwater, far into space, and high altitudes on Earth.',
-#     (SELECT id FROM heroes WHERE name='The Hummingbird'))
-# """
 
-# update(add_vehicle)
 
 # update_relationship = '''
 # UPDATE relationships
@@ -42,13 +36,37 @@ def alter_relationships():
         """
     )
 
-def change_hero_name(new_name, original_name):
-    change_name = """
+def update_hero_name(new_name, original_name):
+    update_name = """
     UPDATE heroes
     SET name = %s
     WHERE name = %s;
     """
-    change = execute_query(change_name, (new_name, original_name))
+    update = execute_query(update_name, (new_name, original_name))
     pprint(original_name + " was changed to " + new_name + "!")
 
-change_hero_name('NEWBIE2', 'Jordan')
+# change_hero_name('NEWBIE2', 'Jordan')
+
+
+
+
+def update_relationships(relationship_type_id, id):
+    update_relationship = """
+    UPDATE relationships
+    SET relationship_type_id = %s
+    WHERE id = %s
+    """
+    update = execute_query(update_relationship, (relationship_type_id, id))
+    if relationship_type_id == 1:
+        pprint('You are now friends! Hug!')
+    elif relationship_type_id == 2:
+        pprint('You are now foes! Attack!')
+
+update_relationships(1, 2)
+
+# update_relationship = '''
+# UPDATE relationships
+# SET relationship_type_id = 2
+# WHERE id = 1;
+# '''
+# update(update_relationship)

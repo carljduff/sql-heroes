@@ -24,3 +24,19 @@ def create_a_hero(name, about_me, biography):
     pprint(name + " was created!")
 
 # create_a_hero('Jordan3', 'I am ME', 'I\'m a superhero!')
+
+def create_a_vehicle(name, description, hero_id):
+    add_vehicle = """
+    INSERT INTO super_vehicles(name, description, hero_id)
+    VALUES(%s, %s, %s)
+    """
+    add = execute_query(add_vehicle, (name, description, hero_id)) ## <----- need to know the why
+    pprint(name + ' added!')
+
+# create_a_vehicle('Duff', "my tank", 1)
+
+
+# create_a_vehicle('Dufftank', "my tank", (SELECT id FROM heroes WHERE name='The Hummingbird'))
+
+
+
