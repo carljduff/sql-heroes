@@ -4,22 +4,19 @@ from connection import *
 from pprint import pprint
 
 
-# hero_names = """
-# SELECT name
-# FROM heroes
-# """
+def hero_names():
+    print_me = execute_query(
+        """
+        SELECT name 
+        FROM heroes 
+        ORDER BY name ASC
+        """
+    ).fetchall()
+    pprint(print_me)
 
-# select_all(hero_names)
+# hero_names()
 
-# friends = """
-# SELECT hero1_id, hero2_id
-# FROM relationships
-# WHERE relationship_type_id = 1
-# """
-
-
-
-## try to update with actual friend names
+## try to update with actual friend names **********************************
 def friends():
     print_me = execute_query(
         """
@@ -30,5 +27,5 @@ def friends():
     ).fetchall()
     pprint(print_me)
 
-friends()
+# friends()
 

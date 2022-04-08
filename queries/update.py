@@ -1,40 +1,29 @@
 import sys
 sys.path.append("/workspace/sql-heroes")
 from connection import *
+from pprint import pprint
+
+
+def add_superpower(name):
+    add_superpower = """
+    INSERT INTO ability_types(name)
+    VALUES (%s)
+    """
+    add = execute_query(add_superpower, [name])
+    pprint(name + ' is a new cool superpower!')
+
+# add_superpower('Shapeshifting')
 
 
 
-# update_relationship = '''
-# UPDATE relationships
-# SET relationship_type_id = 2
-# WHERE id = 1;
-# '''
-# update(update_relationship)
 
-# update_relationship_1 = '''
-# UPDATE relationships
-# SET relationship_type_id = 2
-# WHERE id = 2;
-# '''
-
-# update(update_relationship_1)
-
-# add_superpower = """
-# INSERT INTO ability_types(id, name)
-# VALUES (default, 'Shapeshifting')
-# """
-
-# update(add_superpower)
-
-#UPDATE HERO ABILITIES WITH NEW SHAPESHIFTING ABILITY
-
-def alter_relationships():
-    execute_query(
-        """
-        ALTER TABLE relationships
-        ADD COLUMN 
-        """
-    )
+# def alter_relationships():
+#     execute_query(
+#         """
+#         ALTER TABLE relationships
+#         ADD COLUMN 
+#         """
+#     )
 
 def update_hero_name(new_name, original_name):
     update_name = """
@@ -50,23 +39,44 @@ def update_hero_name(new_name, original_name):
 
 
 
-def update_relationships(relationship_type_id, id):
-    update_relationship = """
+
+def friends(id):
+    update_friendship = """
     UPDATE relationships
-    SET relationship_type_id = %s
+    SET relationship_type_id = 1
     WHERE id = %s
     """
-    update = execute_query(update_relationship, (relationship_type_id, id))
-    if relationship_type_id == 1:
-        pprint('You are now friends! Hug!')
-    elif relationship_type_id == 2:
-        pprint('You are now foes! Attack!')
+    update = execute_query(update_friendship, [id])
+    pprint('You are now friends! Hug!')
 
-update_relationships(1, 2)
+# friends(1)
 
-# update_relationship = '''
-# UPDATE relationships
-# SET relationship_type_id = 2
-# WHERE id = 1;
-# '''
-# update(update_relationship)
+def foes(id):
+    update_foeship = """
+    UPDATE relationships
+    SET relationship_type_id = 2
+    WHERE id = %s
+    """
+    update = execute_query(update_foeship, [id])
+    pprint('You are now foes! Attack!')
+
+# foes(1)
+
+
+
+
+# ----------------- Made separate friend/foe methods------------------------------- # 
+
+# def update_relationships(relationship_type_id, id):
+    # update_relationship = """
+    # UPDATE relationships
+    # SET relationship_type_id = %s
+    # WHERE id = %s
+    # """
+    # update = execute_query(update_relationship, (relationship_type_id, id))
+    # if relationship_type_id == 1:
+    #     pprint('You are now friends! Hug!')
+#     elif relationship_type_id == 2:
+        # pprint('You are now foes! Attack!')
+
+# update_relationships(1, 2)

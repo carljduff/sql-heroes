@@ -3,10 +3,10 @@ sys.path.append("/workspace/sql-heroes")
 from connection import *
 
 
-# def delete_vehicles():
-#     execute_query("""
-#     DROP TABLE IF EXISTS
-#     super_vehicles""")
+def delete_vehicles():
+    execute_query("""
+    DROP TABLE IF EXISTS
+    super_vehicles""")
 
 # delete_vehicles()
 
@@ -52,7 +52,11 @@ def delete_vehicle(name):
 
 
 
-
+# execute_query("""
+# DELETE FROM ability_types
+# WHERE 
+# name = 'Shapeshifting'
+# """)
 
 
 

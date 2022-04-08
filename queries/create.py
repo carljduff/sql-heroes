@@ -1,6 +1,8 @@
 import sys
 sys.path.append("/workspace/sql-heroes")
 from connection import *
+from pprint import pprint
+
 
 def create_vehicles():
     execute_query(""" CREATE TABLE IF NOT EXISTS super_vehicles(
