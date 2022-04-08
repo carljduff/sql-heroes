@@ -16,10 +16,10 @@ def delete_a_hero(name):
     WHERE 
     heroes.name = %s;
     """
-    delete = execute_query(delete_hero, [name]) # Ask about this <----------- [] --------- >
+    delete = execute_query(delete_hero, [name]) 
     pprint(name + ' was deleted!')
 
-# delete_a_hero('Jordan3')
+# delete_a_hero('')
 
 def delete_vehicle(name):
     delete_vehicle = """

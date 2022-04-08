@@ -12,30 +12,67 @@ def create_a_hero(name, about_me, biography):
     create = execute_query(insert_hero, (name, about_me, biography))
     pprint(name + " was created!")
 
-def create_input():
-    name = input('Hello, what is your name?')
-    about_me = input('Tell us about yourself.')
-    biography = input('What\'s your story?')
-    create_a_hero(name, about_me, biography)
+def hero_names():
+    print_me = execute_query(
+        """
+        SELECT name 
+        FROM heroes 
+        ORDER BY id ASC
+        """
+    ).fetchall()
+    pprint(print_me)
 
-create_input()
+def update_hero_name(new_name, original_name):
+    update_name = """
+    UPDATE heroes
+    SET name = %s
+    WHERE name = %s;
+    """
+    update = execute_query(update_name, (new_name, original_name))
+    pprint(original_name + " was changed to " + new_name + "!")
+
+def delete_a_hero(name):
+    delete_hero = """
+    DELETE FROM heroes
+    WHERE 
+    heroes.name = %s;
+    """
+    delete = execute_query(delete_hero, [name]) 
 
 
 
 def demo():
     prompt = input("Hello, what would you like to do? \n"
-        'Create a new hero \n'
-        'See today\'s heroes \n'
-        'Change a hero name \n'
-        'Delete a hero \n')
-    selection = prompt.lower()
-    if selection == 'Create a new hero':
-        print('Enter a hero name, a brief about me and biography in this order.')
-        hero_info = input()
-        create_a_hero(hero_info)
+        '1: Create a new hero \n'
+        '2: See logged in heroes \n'
+        '3: Change a hero name \n'
+        '4: Delete a hero \n')
+    if prompt == '1':
+        name = input('Enter your hero name. ')
+        about_me = input('Tell us about yourself. ')
+        biography = input('What\'s your story? ')
+        create_a_hero(name, about_me, biography)
         demo()
+    elif prompt == '2':
+        hero_names()
+        demo()
+    elif prompt == '3':
+        original_name = input('What is your name? ')
+        new_name = input('Who are you now? ')
+        update_hero_name(new_name, original_name)
+        demo()
+    elif prompt == '4':
+        name = input('Who are you? ')
+        choice = input('*** You are deleting your account. Are you sure? (y or n) ')
+        if choice == 'y':
+            delete_a_hero(name)
+            pprint(name + ' has been deleted. Goodbye.')
+            demo()
+        elif choice == 'n':
+            pprint('Thanks for staying!')
+            demo()
 
-# demo()
+demo()
 
     
 

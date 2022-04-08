@@ -9,7 +9,7 @@ def hero_names():
         """
         SELECT name 
         FROM heroes 
-        ORDER BY name ASC
+        ORDER BY id ASC
         """
     ).fetchall()
     pprint(print_me)
